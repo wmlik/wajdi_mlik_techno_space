@@ -10,32 +10,35 @@ import modele.dao.DaoImpl;
 import modele.dao.DaoInterface;
 import modele.domaine.Cpu;
 
-
 public class CpuMetierImpl implements CpuMetierInterface {
 
-	private DaoInterface dao = null;	
-	
+	private DaoInterface dao = null;
+
 	public CpuMetierImpl() {
-		 dao = new DaoImpl();
+		dao = new DaoImpl();
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 	}
-	
+
 	@Override
 	public List<Cpu> listeCpu() {
-		// TODO Auto-generated method stub
-		List<Cpu> cs= new ArrayList<Cpu>();
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
 		
+		// TODO Auto-generated method stub
+		List<Cpu> cs = new ArrayList<Cpu>();
+
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from Cpu ");
-			
+			PreparedStatement ps = dao.connection.prepareStatement(" select * from cpu ");
+
 			// Récupérer le résultat de la requête
-			ResultSet rs= dao.lire(ps);
-			if (rs!=null)
-			{
-				//parcourir le résultat 
-				while(rs.next())
-				{
-					//Construire un objet "Cpu" puis lui affecter les attributs
+			ResultSet rs = dao.lire(ps);
+			if (rs != null) {
+				// parcourir le résultat
+				while (rs.next()) {
+					// Construire un objet "Cpu" puis lui affecter les attributs
 					// et enfin l'ajouter dans la liste
 					Cpu c = new Cpu();
 					c.setId_cpu(rs.getInt("id_cpu"));
@@ -43,7 +46,7 @@ public class CpuMetierImpl implements CpuMetierInterface {
 					c.setSpeed(rs.getString("speed"));
 					c.setNombre_de_coeur(rs.getInt("nombre_de_coeur"));
 					c.setGenerationCpu(rs.getString("generationCpu"));
-					 //ajouter l'objet "Cpu" dans la liste
+					// ajouter l'objet "Cpu" dans la liste
 					cs.add(c);
 				}
 			}
@@ -51,29 +54,30 @@ public class CpuMetierImpl implements CpuMetierInterface {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		//retoturner la liste
+		// retoturner la liste
 		return cs;
 	}
-	
+
 	@Override
 	public Cpu getCpuById(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		Cpu c = new Cpu();
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from Cpu where id_cpu = ?");
-			ps.setInt(1,id);
-			
-			ResultSet rs= dao.lire(ps);
-			if (rs!=null)
-			{
-				while(rs.next())
-				{
+			PreparedStatement ps = dao.connection.prepareStatement(" select * from cpu where id_cpu = ?");
+			ps.setInt(1, id);
+
+			ResultSet rs = dao.lire(ps);
+			if (rs != null) {
+				while (rs.next()) {
 					c.setId_cpu(rs.getInt("id_cpu"));
 					c.setProcessor_number(rs.getString("processor_number"));
 					c.setSpeed(rs.getString("speed"));
 					c.setNombre_de_coeur(rs.getInt("nombre_de_coeur"));
 					c.setGenerationCpu(rs.getString("generationCpu"));
-					
+
 				}
 			}
 			ps.close();
@@ -85,28 +89,28 @@ public class CpuMetierImpl implements CpuMetierInterface {
 
 	@Override
 	public List<Cpu> listCpuByinfo(String motDeRecherche) {
-		List<Cpu> users= new ArrayList<Cpu>();
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
+		List<Cpu> users = new ArrayList<Cpu>();
 
 		try {
 			// préparer la requête SQL
-			String sql= "select * from Cpu where processor_number like ? or generationCpu like ? or speed like ?";
-			System.out.println(sql);
-			System.out.println("mr:"+motDeRecherche);
-			PreparedStatement ps = dao.connection.prepareStatement(sql);
-			//Affecter la valeur du paramètre
-			ps.setString(1,"%"+motDeRecherche+"%");
-			ps.setString(2,"%"+motDeRecherche+"%");
-			ps.setString(3,"%"+motDeRecherche+"%");
+			String sql = "select * from cpu where processor_number like ? or generationCpu like ? or speed like ?";
 
-			//ps.setString(2,motDeRecherche);
+			PreparedStatement ps = dao.connection.prepareStatement(sql);
+			// Affecter la valeur du paramètre
+			ps.setString(1, "%" + motDeRecherche + "%");
+			ps.setString(2, "%" + motDeRecherche + "%");
+			ps.setString(3, "%" + motDeRecherche + "%");
+
+			// ps.setString(2,motDeRecherche);
 			// Récupérer le résultat de la requête
-			ResultSet rs= dao.lire(ps);
-			if (rs!=null)
-			{
-				//parcourir le résultat 
-				while(rs.next())
-				{
-					//Construire un objet "Cpu" puis lui affecter les attributs
+			ResultSet rs = dao.lire(ps);
+			if (rs != null) {
+				// parcourir le résultat
+				while (rs.next()) {
+					// Construire un objet "Cpu" puis lui affecter les attributs
 					// et enfin l'ajouter dans la liste
 					Cpu c = new Cpu();
 					c.setId_cpu(rs.getInt("id_cpu"));
@@ -122,14 +126,15 @@ public class CpuMetierImpl implements CpuMetierInterface {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		//retoturner la liste
+		// retoturner la liste
 		return users;
 	}
 
-	
-
 	@Override
 	public void addCpu(Cpu p) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+	
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" insert into cpu values (0,?,?,?,?)");
@@ -140,16 +145,19 @@ public class CpuMetierImpl implements CpuMetierInterface {
 			ps.setInt(4, p.getNombre_de_coeur());
 			// executer la requête
 			dao.ecrire(ps);
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
-		
+		}
+
 	}
 
 	@Override
 	public void updateCpu(Cpu u) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			String sql = " update cpu set id_cpu = ?, processor_number=?, generationCpu=?, speed =?, nombre_de_coeur =? where id_cpu=? ";
@@ -165,11 +173,14 @@ public class CpuMetierImpl implements CpuMetierInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
 	public void deleteCpu(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" delete from cpu  where id_cpu=? ");
@@ -179,7 +190,7 @@ public class CpuMetierImpl implements CpuMetierInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 }

@@ -17,16 +17,22 @@ public class RamMetierImpl implements RamMetierInterface {
 	
 	public RamMetierImpl() {
 		 dao = new DaoImpl();
+		 TestConnectMetierInterface test = new TestConnectMetierImpl();
+			test.test();
+			
 	}
 	
 	@Override
 	public List<Ram> listeRam() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		// TODO Auto-generated method stub
 		List<Ram> cs= new ArrayList<Ram>();
 		
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from Ram ");
+			PreparedStatement ps = dao.connection.prepareStatement(" select * from ram ");
 			
 			// Récupérer le résultat de la requête
 			ResultSet rs= dao.lire(ps);
@@ -57,10 +63,13 @@ public class RamMetierImpl implements RamMetierInterface {
 	
 	@Override
 	public Ram getRamById(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		Ram c = new Ram();
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from Ram where id_ram = ?");
+			PreparedStatement ps = dao.connection.prepareStatement(" select * from ram where id_ram = ?");
 			ps.setInt(1,id);
 			
 			ResultSet rs= dao.lire(ps);
@@ -84,13 +93,15 @@ public class RamMetierImpl implements RamMetierInterface {
 
 	@Override
 	public List<Ram> listRamByinfo(String motDeRecherche) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		List<Ram> users= new ArrayList<Ram>();
 
 		try {
 			// préparer la requête SQL
-			String sql= "select * from Ram where marqueRam like ? or capaciteRam like ? or generationRam like ?  ";
-			System.out.println(sql);
-			System.out.println("mr:"+motDeRecherche);
+			String sql= "select * from ram where marqueRam like ? or capaciteRam like ? or generationRam like ?  ";
+		
 			PreparedStatement ps = dao.connection.prepareStatement(sql);
 			//Affecter la valeur du paramètre
 			ps.setString(1,"%"+motDeRecherche+"%");
@@ -129,6 +140,9 @@ public class RamMetierImpl implements RamMetierInterface {
 
 	@Override
 	public void addRam(Ram p) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" insert into ram values (0,?,?,?)");
@@ -149,9 +163,12 @@ public class RamMetierImpl implements RamMetierInterface {
 
 	@Override
 	public void updateRam(Ram u) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
-			String sql = " update ram set id_ram = ?, capaciteRam=?, MarqueRam=?, GenerationRam =? where id_ram=? ";
+			String sql = " update ram set id_ram = ?, capaciteRam=?, marqueRam=?, generationRam =? where id_ram=? ";
 			PreparedStatement ps = dao.connection.prepareStatement(sql);
 			ps.setInt(1, u.getId_ram());
 			ps.setString(2, u.getCapaciteRam());
@@ -168,6 +185,9 @@ public class RamMetierImpl implements RamMetierInterface {
 
 	@Override
 	public void deleteRam(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" delete from ram  where id_ram=? ");

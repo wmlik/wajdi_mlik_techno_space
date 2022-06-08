@@ -81,8 +81,7 @@ public class FormNouveauxPcInfoAction extends HttpServlet {
 		String id = request.getParameter("id");
 		String mode = request.getParameter("mode");
 		
-		System.out.println("mode"+mode);
-		System.out.println("id"+id);
+		
 		//test for add or update
 		if (mode == null && id == null) { //for add
 			
@@ -110,7 +109,7 @@ public class FormNouveauxPcInfoAction extends HttpServlet {
 				// passer l'objet trouvé comme attribut dans la requête
 				request.setAttribute("pc", p);
 				
-				System.out.println("id_hdd contr----------------"+p.getId_hdd());
+				
 				List<Fournisseur> fournisseurs = metierfournisseur.listeFournisseur();
 				List<Cpu> cpus = metiercpu.listeCpu();
 				List<Gpu> gpus = metiergpu.listeGpu();
@@ -263,8 +262,7 @@ public class FormNouveauxPcInfoAction extends HttpServlet {
 				// Modifier l'objet en question
 				
 				NouveauxPcInfo u = new NouveauxPcInfo( Integer.parseInt(id_pc), MarquePc, gamme, couleur, date_entree, date_sortie, Double.parseDouble(prix_achat), Double.parseDouble(prix_vente), Integer.parseInt(qte_stock), Integer.parseInt(qte_vendu), Integer.parseInt(id_fournisseur), Integer.parseInt(id_cpu), Integer.parseInt(id_gpu), Integer.parseInt(id_hdd), Integer.parseInt(id_ram));
-				System.out.println("id mta3 update form controler /////////// "+id_pc);
-				System.out.println("ob mta3 update form controler /////////// "+u);
+				
 				metierpc.updateNouveauxPcInfo(u);
 
 			}

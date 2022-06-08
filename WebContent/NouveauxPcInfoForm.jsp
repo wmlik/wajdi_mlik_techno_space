@@ -72,8 +72,7 @@
 			id_hdd = p.getId_hdd();
 			id_ram = p.getId_ram();
 
-			System.out.println("id_hdd----------------" + id_hdd);
-			System.out.println("id_ram----------------" + id_ram);
+			
 		}
 
 		// Correction des  valleurs nulles
@@ -101,7 +100,7 @@
 		<form action="FormNouveauxPcInfoAction" method="POST">
 			<table>
 				<tr>
-					<td><input type="text" name="id_pc" value="<%=id_pc%>" /></td>
+					<td><input type="hidden" name="id_pc" value="<%=id_pc%>" /></td>
 				</tr>
 				<tr>
 					<td class="label">MarquePc:</td>
@@ -109,7 +108,7 @@
 				</tr>
 				<tr>
 					<td class="label">gamme:</td>
-					<td><input type="text" name="gamme" value="<%=gamme%>" /></td>
+					<td><input type="text" name="gamme" value="<%=gamme%>" placeholder = "Ex: pro, gamer, standard"/></td>
 				</tr>
 				<tr>
 					<td class="label">couleur:</td>
@@ -128,22 +127,22 @@
 				<tr>
 					<td class="label">prix_achat:</td>
 					<td><input type="number" name="prix_achat"
-						value="<%=prix_achat%>" /></td>
+						value="<%=prix_achat%>" min="0" /></td>
 				</tr>
 				<tr>
 					<td class="label">prix_vente:</td>
 					<td><input type="number" name="prix_vente"
-						value="<%=prix_vente%>" /></td>
+						value="<%=prix_vente%>" min="0" /></td>
 				</tr>
 				<tr>
 					<td class="label">qte_stock:</td>
 					<td><input type="number" name="qte_stock"
-						value="<%=qte_stock%>" /></td>
+						value="<%=qte_stock%>" min="0"/></td>
 				</tr>
 				<tr>
 					<td class="label">qte_vendu:</td>
 					<td><input type="number" name="qte_vendu"
-						value="<%=qte_vendu%>" /></td>
+						value="<%=qte_vendu%>" min="0"/></td>
 				</tr>
 
 				<tr>
@@ -262,9 +261,13 @@
 
 
 				<tr>
-					<td align="center" colspan="2"><input type="submit"
-						value="ok " /> <input type="reset" value="Annuler" /></td>
+					<td align="center" colspan="2">
+						<input type="submit" value="ok" class="btn btn-primary"/>
+						<a href ="PcCompletListController" class="btn btn-secondary">Annuler</a>
+					</td>
 				</tr>
 			</table>
+				</form>
+</div>	
 </body>
 </html>

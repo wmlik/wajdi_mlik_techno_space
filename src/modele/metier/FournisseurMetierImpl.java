@@ -10,40 +10,44 @@ import modele.dao.DaoImpl;
 import modele.dao.DaoInterface;
 import modele.domaine.Fournisseur;
 
-
 public class FournisseurMetierImpl implements FournisseurMetierInterface {
 
-	private DaoInterface dao = null;	
-	
+	private DaoInterface dao = null;
+
 	public FournisseurMetierImpl() {
-		 dao = new DaoImpl();
+		dao = new DaoImpl();
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
+		
 	}
-	
+
 	@Override
 	public List<Fournisseur> listeFournisseur() {
-		// TODO Auto-generated method stub
-		List<Fournisseur> cs= new ArrayList<Fournisseur>();
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
 		
+		// TODO Auto-generated method stub
+		List<Fournisseur> cs = new ArrayList<Fournisseur>();
+
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from Fournisseur ");
-			
+			PreparedStatement ps = dao.connection.prepareStatement(" select * from fournisseur ");
+
 			// Récupérer le résultat de la requête
-			ResultSet rs= dao.lire(ps);
-			if (rs!=null)
-			{
-				//parcourir le résultat 
-				while(rs.next())
-				{
-					//Construire un objet "Fournisseur" puis lui affecter les attributs
+			ResultSet rs = dao.lire(ps);
+			if (rs != null) {
+				// parcourir le résultat
+				while (rs.next()) {
+					// Construire un objet "Fournisseur" puis lui affecter les attributs
 					// et enfin l'ajouter dans la liste
 					Fournisseur c = new Fournisseur();
 					c.setId_fournisseur(rs.getInt("id_fournisseur"));
-					c.setNom_fournisseur(rs.getString("Nom_fournisseur"));
-					c.setAddresse(rs.getString("Addresse"));
-					c.setTlf(rs.getString("Tlf"));
-					c.setEmail(rs.getString("Email"));
-					 //ajouter l'objet "Fournisseur" dans la liste
+					c.setNom_fournisseur(rs.getString("nom_fournisseur"));
+					c.setAddresse(rs.getString("addresse"));
+					c.setTlf(rs.getString("tlf"));
+					c.setEmail(rs.getString("email"));
+					// ajouter l'objet "Fournisseur" dans la liste
 					cs.add(c);
 				}
 			}
@@ -51,29 +55,31 @@ public class FournisseurMetierImpl implements FournisseurMetierInterface {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		//retoturner la liste
+		// retoturner la liste
 		return cs;
 	}
-	
+
 	@Override
 	public Fournisseur getFournisseurById(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		Fournisseur c = new Fournisseur();
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from Fournisseur where id_fournisseur = ?");
-			ps.setInt(1,id);
-			
-			ResultSet rs= dao.lire(ps);
-			if (rs!=null)
-			{
-				while(rs.next())
-				{
+			PreparedStatement ps = dao.connection
+					.prepareStatement(" select * from fournisseur where id_fournisseur = ?");
+			ps.setInt(1, id);
+
+			ResultSet rs = dao.lire(ps);
+			if (rs != null) {
+				while (rs.next()) {
 					c.setId_fournisseur(rs.getInt("id_fournisseur"));
-					c.setNom_fournisseur(rs.getString("Nom_fournisseur"));
-					c.setAddresse(rs.getString("Addresse"));
-					c.setTlf(rs.getString("Tlf"));
-					c.setEmail(rs.getString("Email"));
-					
+					c.setNom_fournisseur(rs.getString("nom_fournisseur"));
+					c.setAddresse(rs.getString("addresse"));
+					c.setTlf(rs.getString("tlf"));
+					c.setEmail(rs.getString("email"));
+
 				}
 			}
 			ps.close();
@@ -85,36 +91,36 @@ public class FournisseurMetierImpl implements FournisseurMetierInterface {
 
 	@Override
 	public List<Fournisseur> listFournisseurByinfo(String motDeRecherche) {
-		List<Fournisseur> users= new ArrayList<Fournisseur>();
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
+		List<Fournisseur> users = new ArrayList<Fournisseur>();
 
 		try {
 			// préparer la requête SQL
-			String sql= "select * from Fournisseur where nom_fournisseur like ? or addresse like ? or tlf like ?or email like ?";
-			System.out.println(sql);
-			System.out.println("mr:"+motDeRecherche);
-			PreparedStatement ps = dao.connection.prepareStatement(sql);
-			//Affecter la valeur du paramètre
-			ps.setString(1,"%"+motDeRecherche+"%");
-			ps.setString(2,"%"+motDeRecherche+"%");
-			ps.setString(3,"%"+motDeRecherche+"%");
-			ps.setString(4,"%"+motDeRecherche+"%");
+			String sql = "select * from fournisseur where nom_fournisseur like ? or addresse like ? or tlf like ?or email like ?";
 
-			//ps.setString(2,motDeRecherche);
+			PreparedStatement ps = dao.connection.prepareStatement(sql);
+			// Affecter la valeur du paramètre
+			ps.setString(1, "%" + motDeRecherche + "%");
+			ps.setString(2, "%" + motDeRecherche + "%");
+			ps.setString(3, "%" + motDeRecherche + "%");
+			ps.setString(4, "%" + motDeRecherche + "%");
+
+			// ps.setString(2,motDeRecherche);
 			// Récupérer le résultat de la requête
-			ResultSet rs= dao.lire(ps);
-			if (rs!=null)
-			{
-				//parcourir le résultat 
-				while(rs.next())
-				{
-					//Construire un objet "Fournisseur" puis lui affecter les attributs
+			ResultSet rs = dao.lire(ps);
+			if (rs != null) {
+				// parcourir le résultat
+				while (rs.next()) {
+					// Construire un objet "Fournisseur" puis lui affecter les attributs
 					// et enfin l'ajouter dans la liste
 					Fournisseur c = new Fournisseur();
 					c.setId_fournisseur(rs.getInt("id_fournisseur"));
-					c.setNom_fournisseur(rs.getString("Nom_fournisseur"));
-					c.setAddresse(rs.getString("Addresse"));
-					c.setTlf(rs.getString("Tlf"));
-					c.setEmail(rs.getString("Email"));
+					c.setNom_fournisseur(rs.getString("nom_fournisseur"));
+					c.setAddresse(rs.getString("addresse"));
+					c.setTlf(rs.getString("tlf"));
+					c.setEmail(rs.getString("email"));
 					// ajouter l'objet "Fournisseur" dans la liste
 					users.add(c);
 				}
@@ -123,14 +129,15 @@ public class FournisseurMetierImpl implements FournisseurMetierInterface {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		//retoturner la liste
+		// retoturner la liste
 		return users;
 	}
 
-	
-
 	@Override
 	public void addFournisseur(Fournisseur p) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" insert into fournisseur values (0,?,?,?,?)");
@@ -141,19 +148,22 @@ public class FournisseurMetierImpl implements FournisseurMetierInterface {
 			ps.setString(4, p.getEmail());
 			// executer la requête
 			dao.ecrire(ps);
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
-		
+		}
+
 	}
 
 	@Override
 	public void updateFournisseur(Fournisseur u) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
-			String sql = " update fournisseur set id_fournisseur = ?, Nom_fournisseur=?, Addresse=?, Tlf =?, Email =? where id_fournisseur=? ";
+			String sql = " update fournisseur set id_fournisseur = ?, nom_fournisseur=?, addresse=?, Tlf =?, email =? where id_fournisseur=? ";
 			PreparedStatement ps = dao.connection.prepareStatement(sql);
 			ps.setInt(1, u.getId_fournisseur());
 			ps.setString(2, u.getNom_fournisseur());
@@ -166,11 +176,14 @@ public class FournisseurMetierImpl implements FournisseurMetierInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	@Override
 	public void deleteFournisseur(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" delete from fournisseur  where id_fournisseur=? ");
@@ -180,10 +193,7 @@ public class FournisseurMetierImpl implements FournisseurMetierInterface {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-	}
 
-	
-	
+	}
 
 }

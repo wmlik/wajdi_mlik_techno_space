@@ -11,7 +11,7 @@
 <body >
 
 
-		Veuillez saisir les propriétés de Cpu...
+		<div>Veuillez saisir les propriétés de Cpu...</div> 
 		<hr>
 		
 		<%
@@ -57,35 +57,37 @@
 			if (speed==null)speed="";
 			
 		%>
-		
+	<div>
 		<form action="FormCpuAction" method="POST">
 			<table>
 			<tr>
-				<td><input type="hidden" name="id_cpu" value ="<%=id_cpu%>"/></td>
+				<td><input type="hidden" name="id_cpu" value ="<%=id_cpu%>" /></td>
 			</tr>
 			<tr>
 				<td>Nom de processeur:</td>
-				<td><input type="text" name="processor_number" value ="<%=processor_number%>"/></td>
+				<td><input type="text" name="processor_number" value ="<%=processor_number%>" placeholder = "EX: i3, i5, intel inside..."/></td>
 			</tr>
 			<tr>
 				<td>génération du Cpu</td>
-				<td><input type="password" name="generationCpu" value ="<%=generationCpu%>"/></td>
+				<td><input type="text" name="generationCpu" value ="<%=generationCpu%>" placeholder = "EX: 12 eme gen,9 eme gen..."/></td>
 			</tr>
 			<tr>
 				<td>vitesse</td>
-				<td><input type="text" name="speed" value ="<%=speed%>"/></td>
+				<td><input type="text" name="speed" value ="<%=speed%>" placeholder = "EX: 1.6 gh,4.1 gh..."/></td>
 			</tr>
 			<tr>
 				<td>nombre de coeur</td>
-				<td><input type="number" name="nombre_de_coeur" value ="<%=nombre_de_coeur%>"/></td>
+				<td><input type="number" name="nombre_de_coeur" value ="<%=nombre_de_coeur%>" min="1"/></td>
 			</tr>
 			<tr>
-				<td align="center" colspan="2"><input type="submit" value="ok" />
-					<input type="reset" value="Annuler" /></td>
+				<td align="center" colspan="2">
+				<input type="submit" value="ok" class="btn btn-primary"/>
+						<a href ="CpuListController" class="btn btn-secondary">Annuler</a>
+					</td>
 			</tr>
 
 		</table>
 	</form>
-
+</div>	
 </body>
 </html>

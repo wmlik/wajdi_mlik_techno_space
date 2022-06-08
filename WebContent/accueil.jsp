@@ -13,13 +13,11 @@
 <html>
 <head>
 
-<title>Connexion</title>
+<title>Acceuil</title>
 <!-- Custom fonts for this template-->
 
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/cssold/style-4.css" />
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/cssold/style-4.css" />
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 <link
 	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
@@ -29,10 +27,11 @@
 
 
 
+
 </head>
 <body id="page-top">
-	<hr>
-	<nav class="style-4">
+	
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<ul class="menu-4">
 			<li class="user">BienVenue : <%=us.getNom()%> <%=us.getPrenom()%></li>
 			<li><a href="StatistiqueController" data-hover="Bienvenue">
@@ -40,8 +39,9 @@
 			<li><a href="UserListController" data-hover="utilisateur">utilisateur</a></li>
 			<li><a href="PcCompletListController" data-hover="List Pc">List
 					Pc</a></li>
-			<li><a href="CpuListController" data-hover="Cpu">Cpu</a></li>
-			
+			<li><a href="CpuListController" data-hover="List Cpu">List Cpu</a></li>
+			<li><a href="About.jsp" data-hover="A propos">A propos</a></li>		  
+	
 			<li><a href="UserDeconnexionController"
 				onclick="return confirm('Voulez vous vraiment quitter ?')"
 				data-hover="Au revoir">Déconnexion</a></li>
@@ -84,30 +84,17 @@
 
 												for (int i = 0; i < list_vente_par_gamme.size(); i++) {
 									%>
-									<h4 class="small font-weight-bold">
-										PC gamme
-										<%
-										out.println(((Statistique) list_vente_par_gamme.get(i)).getGamme());
-									%>
-										<span class="float-right"> <%
- 	out.println(
- 						(((Statistique) list_vente_par_gamme.get(i)).getQt_vend() * 100) / total_qt_vend_gamme);
- %>%
+									<h4 class="small font-weight-bold">PC gamme
+										<%out.println(((Statistique) list_vente_par_gamme.get(i)).getGamme());%>
+										<span class="float-right"> <%out.println((((Statistique) list_vente_par_gamme.get(i)).getQt_vend() * 100) / total_qt_vend_gamme);%>%
 										</span>
 									</h4>
 									<div class="progress mb-4">
-										<div class="progress-bar bg-danger" role="progressbar"
-											style="width: <%out.println(
-								((((Statistique) list_vente_par_gamme.get(i)).getQt_vend() * 100) / total_qt_vend_gamme)
-										+ "%");%>"
+										<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+											style="width: <%out.println(((((Statistique) list_vente_par_gamme.get(i)).getQt_vend() * 100) / total_qt_vend_gamme)+ "%");%>"
 											aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
 									</div>
-									<%
-										}
-
-											}
-									%>
-
+									<%}}%>
 								</div>
 							</div>
 
@@ -139,7 +126,7 @@
 										</span>
 									</h4>
 									<div class="progress mb-4">
-										<div class="progress-bar bg-danger" role="progressbar"
+										<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
 											style="width: <%out.println(((((Statistique) list_vente_par_couleur.get(i)).getQt_vend() * 100)
 								/ total_qt_vend_gamme) + "%");%>"
 											aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
@@ -182,7 +169,7 @@
 									%>
 										<%
 											out.println(((Statistique) list_vente_par_hdd.get(i)).getCapaciteHdd());
-										%>
+										%> Go
 										<span class="float-right"> <%
  	out.println(
  						(((Statistique) list_vente_par_hdd.get(i)).getQt_vend() * 100) / total_qt_vend_gamme);
@@ -222,13 +209,14 @@
 												for (int i = 0; i < list_vente_par_gpu.size(); i++) {
 									%>
 									<h4 class="small font-weight-bold">
-										Type
+										Marque
 										<%
 										out.println(((Statistique) list_vente_par_gpu.get(i)).getMarque_gpu());
 									%>
 										<%
 											out.println(((Statistique) list_vente_par_gpu.get(i)).getCapacitegpu());
 										%>
+										
 										<span class="float-right"> <%
  	out.println(
  						(((Statistique) list_vente_par_gpu.get(i)).getQt_vend() * 100) / total_qt_vend_gamme);

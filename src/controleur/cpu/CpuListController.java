@@ -54,11 +54,7 @@ public class CpuListController extends HttpServlet {
 		//Passer la liste comme attribut			
 		request.setAttribute("ListCpu", Cpus);
 		request.getRequestDispatcher("CpuList.jsp").forward(request, response);
-		for (Cpu u2: Cpus )
-		{
-			System.out.println(u2);
-		}
-		//System.out.println(request.getAttribute("ListCpu"));
+		
 	}
 
 	/**

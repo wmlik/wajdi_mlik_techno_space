@@ -102,20 +102,11 @@ public class StatistiqueListController extends HttpServlet {
 		request.setAttribute("total_qt_vend_gamme", total_qt_vend_gamme);
 		
 		
-		System.out.println("----------------------------------------------------");
+	
 
 		// rederiction + ba3then session
 		request.getRequestDispatcher("accueil.jsp").forward(request, response);
-		System.out.println(request.getAttribute("liste_benefice_par_date"));
-		System.out.println(request.getAttribute("liste_benefice_qte_pc"));
-		System.out.println(request.getAttribute("list_benefice_par_pc"));
-		System.out.println(request.getAttribute("list_vente_par_couleur"));
-		System.out.println(request.getAttribute("list_vente_par_hdd"));
-		System.out.println(request.getAttribute("list_vente_par_gpu"));
-		System.out.println(request.getAttribute("list_vente_par_fornissuer"));
-		System.out.println(request.getAttribute("list_qteStock_par_marque_cpu"));
-		System.out.println(request.getAttribute("list_vente_par_gamme"));
-		System.out.println(request.getAttribute("total_qt_vend_gamme"));
+		
 		
 
 	}

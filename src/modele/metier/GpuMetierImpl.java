@@ -16,17 +16,23 @@ public class GpuMetierImpl implements GpuMetierInterface {
 	private DaoInterface dao = null;	
 	
 	public GpuMetierImpl() {
-		 dao = new DaoImpl();
+		dao = new DaoImpl();
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 	}
 	
 	@Override
 	public List<Gpu> listeGpu() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		// TODO Auto-generated method stub
 		List<Gpu> cs= new ArrayList<Gpu>();
 		
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from Gpu ");
+			PreparedStatement ps = dao.connection.prepareStatement(" select * from gpu ");
 			
 			// Récupérer le résultat de la requête
 			ResultSet rs= dao.lire(ps);
@@ -47,7 +53,7 @@ public class GpuMetierImpl implements GpuMetierInterface {
 					cs.add(c);
 				}
 			}
-			ps.close();
+		//	ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -57,10 +63,13 @@ public class GpuMetierImpl implements GpuMetierInterface {
 	
 	@Override
 	public Gpu getGpuById(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		Gpu c = new Gpu();
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from Gpu where id_gpu = ?");
+			PreparedStatement ps = dao.connection.prepareStatement(" select * from gpu where id_gpu = ?");
 			ps.setInt(1,id);
 			
 			ResultSet rs= dao.lire(ps);
@@ -84,13 +93,15 @@ public class GpuMetierImpl implements GpuMetierInterface {
 
 	@Override
 	public List<Gpu> listGpuByinfo(String motDeRecherche) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		List<Gpu> users= new ArrayList<Gpu>();
 
 		try {
 			// préparer la requête SQL
-			String sql= "select * from Gpu where marqueGpu like ? or capaciteGpu like ? or vitesse like ?";
-			System.out.println(sql);
-			System.out.println("mr:"+motDeRecherche);
+			String sql= "select * from gpu where marqueGpu like ? or capaciteGpu like ? or vitesse like ?";
+			
 			PreparedStatement ps = dao.connection.prepareStatement(sql);
 			//Affecter la valeur du paramètre
 			ps.setString(1,"%"+motDeRecherche+"%");
@@ -116,7 +127,7 @@ public class GpuMetierImpl implements GpuMetierInterface {
 					users.add(c);
 				}
 			}
-			ps.close();
+		//	ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -128,6 +139,9 @@ public class GpuMetierImpl implements GpuMetierInterface {
 
 	@Override
 	public void addGpu(Gpu p) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" insert into gpu values (0,?,?,?)");
@@ -150,6 +164,9 @@ public class GpuMetierImpl implements GpuMetierInterface {
 
 	@Override
 	public void updateGpu(Gpu u) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			String sql = " update gpu set id_gpu=?, marqueGpu=?, capaciteGpu=?, vitesse =?  where id_gpu=?";
@@ -169,6 +186,9 @@ public class GpuMetierImpl implements GpuMetierInterface {
 
 	@Override
 	public void deleteGpu(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" delete from gpu  where id_gpu=? ");

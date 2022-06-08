@@ -17,10 +17,16 @@ public class PcCompletMetierImpl implements PcCompletMetierInterface {
 	
 	public PcCompletMetierImpl() {
 		 dao = new DaoImpl();
+		 TestConnectMetierInterface test = new TestConnectMetierImpl();
+			test.test();
+			
 	}
 	
 	@Override
 	public List<PcComplet> listePcComplet() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		// TODO Auto-generated method stub
 		List<PcComplet> cs= new ArrayList<PcComplet>();
 		
@@ -114,6 +120,9 @@ public class PcCompletMetierImpl implements PcCompletMetierInterface {
 	
 	@Override
 	public PcComplet getPcCompletById(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		PcComplet c = new PcComplet();
 		try {
 			// préparer la requête SQL
@@ -201,6 +210,9 @@ public class PcCompletMetierImpl implements PcCompletMetierInterface {
 	}
 	@Override
 	public List<PcComplet> listPcCompletByinfo(String motDeRecherche) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		List<PcComplet> users= new ArrayList<PcComplet>();
 
 		try {
@@ -212,8 +224,7 @@ public class PcCompletMetierImpl implements PcCompletMetierInterface {
 					+ "or marqueGpu like ? or capaciteGpu like ? or vitesse like ? "
 					+ "or marqueHdd like ? or capaciteHdd like ? or bande_passante like ? or type like ? "
 					+ "or nom_fournisseur like ? ) ORDER BY marquePc";
-			System.out.println(sql);
-			System.out.println("recherche by:"+motDeRecherche);
+			
 			PreparedStatement ps = dao.connection.prepareStatement(sql);
 			//Affecter la valeur du paramètre
 			ps.setString(1,"%"+motDeRecherche+"%");
@@ -287,10 +298,10 @@ public class PcCompletMetierImpl implements PcCompletMetierInterface {
 					c.setVitesse(rs.getString("vitesse"));
 					//parite fournisseur
 					c.setId_fournisseur(rs.getInt("id_fournisseur"));
-					c.setNom_fournisseur(rs.getString("Nom_fournisseur"));
-					c.setAddresse(rs.getString("Addresse"));
-					c.setTlf(rs.getString("Tlf"));
-					c.setEmail(rs.getString("Email"));
+					c.setNom_fournisseur(rs.getString("nom_fournisseur"));
+					c.setAddresse(rs.getString("addresse"));
+					c.setTlf(rs.getString("tlf"));
+					c.setEmail(rs.getString("email"));
 					
 					// ajouter l'objet "PcComplet" dans la liste
 					users.add(c);
@@ -307,6 +318,9 @@ public class PcCompletMetierImpl implements PcCompletMetierInterface {
 
 	@Override
 	public void addPcComplet(PcComplet p) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL pc
 			PreparedStatement ps = dao.connection.prepareStatement(" insert into nouveauxpcinfo values (0,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -375,11 +389,14 @@ public class PcCompletMetierImpl implements PcCompletMetierInterface {
 
 	@Override
 	public void updatePcComplet(PcComplet p) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
-			String sql = " update nouveauxpcinfo set Id_pc = ?, MarquePc=?, Gamme=?, Couleur =?, "
-					+ "Date_entree =?, Date_sortie =?, Prix_achat =?, Prix_vente =?, Qte_stock =?, Qte_vendu =?, "
-					+ "Id_fournisseur =?, Id_cpu =?, Id_gpu =?, Id_ram =? where Id_pc=? ";
+			String sql = " update nouveauxpcinfo set id_pc = ?, marquePc=?, gamme=?, couleur =?, "
+					+ "date_entree =?, date_sortie =?, prix_achat =?, prix_vente =?, qte_stock =?, qte_vendu =?, "
+					+ "id_fournisseur =?, id_cpu =?, id_gpu =?, id_ram =? where id_pc=? ";
 			PreparedStatement ps = dao.connection.prepareStatement(sql);
 			ps.setInt(1, p.getId_pc());
 			ps.setString(2, p.getMarquePc());
@@ -408,7 +425,7 @@ public class PcCompletMetierImpl implements PcCompletMetierInterface {
 			pscpu.setInt(6, p.getId_cpu());
 			dao.ecrire(pscpu);	
 			// préparer la requête SQL ram
-			String sqlram = " update ram set id_ram = ?, capaciteRam=?, MarqueRam=?, GenerationRam =? where id_ram=? ";
+			String sqlram = " update ram set id_ram = ?, capaciteRam=?, marqueRam=?, generationRam =? where id_ram=? ";
 			PreparedStatement psram = dao.connection.prepareStatement(sqlram);
 			psram.setInt(1, p.getId_ram());
 			psram.setString(2, p.getCapaciteRam());
@@ -417,7 +434,7 @@ public class PcCompletMetierImpl implements PcCompletMetierInterface {
 			psram.setInt(5, p.getId_ram());
 			dao.ecrire(psram);
 			// préparer la requête SQL hdd
-			String sqlhdd = " update hdd set id_hdd = ?, marqueHdd=?, capaciteHdd=?, Bande_passante =?, Type =? where id_hdd=? ";
+			String sqlhdd = " update hdd set id_hdd = ?, marqueHdd=?, capaciteHdd=?, bande_passante =?, Type =? where id_hdd=? ";
 			PreparedStatement pshdd = dao.connection.prepareStatement(sqlhdd);
 			pshdd.setInt(1, p.getId_hdd());
 			pshdd.setString(2, p.getMarqueHdd());
@@ -444,6 +461,9 @@ public class PcCompletMetierImpl implements PcCompletMetierInterface {
 
 	@Override
 	public void deletePcComplet(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" delete from nouveauxpcinfo  where id_pc=? ");

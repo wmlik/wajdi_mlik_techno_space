@@ -17,7 +17,7 @@ public class Statistique implements Serializable {
 	private String processor_number;
 	private String couleur;
 	private int capaciteHdd;
-	private int capacitegpu;
+	private String capacitegpu;
 	private int qte_stok;
 	private String type;
 	private String gamme;
@@ -62,7 +62,7 @@ public class Statistique implements Serializable {
 	}
 
 	public Statistique(String marque_pc, String marque_gpu, String generationCpu, int benefice, String processor_number,
-			int capacitegpu) {
+			String capacitegpu) {
 		//list akthar pc fiha marbou7
 		//list_benefice_par_pc
 		super();
@@ -108,7 +108,7 @@ public class Statistique implements Serializable {
 		return "Statistique [qt_vend=" + qt_vend + ", capaciteHdd=" + capaciteHdd + ", type=" + type + "]";
 	}
 
-	public Statistique(String marque_gpu, int qt_vend, int capacitegpu) {
+	public Statistique(String marque_gpu, int qt_vend, String capacitegpu) {
 		//list gpu 7aseb 9adech be3na menou
 		//list_vente_par_gpu
 		super();
@@ -276,11 +276,11 @@ public class Statistique implements Serializable {
 		this.capaciteHdd = capaciteHdd;
 	}
 
-	public int getCapacitegpu() {
+	public String getCapacitegpu() {
 		return capacitegpu;
 	}
 
-	public void setCapacitegpu(int capacitegpu) {
+	public void setCapacitegpu(String capacitegpu) {
 		this.capacitegpu = capacitegpu;
 	}
 

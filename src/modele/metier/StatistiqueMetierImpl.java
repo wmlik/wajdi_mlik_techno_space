@@ -14,10 +14,16 @@ public class StatistiqueMetierImpl implements StatistiqueMetierInterface {
 
 	public StatistiqueMetierImpl() {
 		dao = new DaoImpl();
+		
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
 	}
 	
 	@Override
 	public List<Statistique> liste_benefice_par_date() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		List<Statistique> cs1 = new ArrayList<Statistique>();
 
 		try {
@@ -50,6 +56,9 @@ public class StatistiqueMetierImpl implements StatistiqueMetierInterface {
 
 	@Override
 	public List<Statistique> liste_benefice_qte_pc() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		List<Statistique> cs2 = new ArrayList<Statistique>();
 
 		try {
@@ -84,6 +93,9 @@ public class StatistiqueMetierImpl implements StatistiqueMetierInterface {
 
 	@Override
 	public List<Statistique> list_benefice_par_pc() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+	
 		List<Statistique> cs3 = new ArrayList<Statistique>();
 		try {
 			// préparer la requête SQL
@@ -102,7 +114,7 @@ public class StatistiqueMetierImpl implements StatistiqueMetierInterface {
 					c.setMarque_gpu(rs.getString("marqueGpu"));
 					c.setProcessor_number(rs.getString("processor_number"));
 					c.setGenerationCpu(rs.getString("generationCpu"));
-					c.setCapacitegpu(rs.getInt("capaciteGpu"));
+					c.setCapacitegpu(rs.getString("capaciteGpu"));
 					// ajouter l'objet "Cpu" dans la liste
 					cs3.add(c);
 				}
@@ -117,6 +129,9 @@ public class StatistiqueMetierImpl implements StatistiqueMetierInterface {
 
 	@Override
 	public List<Statistique> list_vente_par_couleur() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		List<Statistique> cs4 = new ArrayList<Statistique>();
 		try {
 			// préparer la requête SQL
@@ -146,6 +161,9 @@ public class StatistiqueMetierImpl implements StatistiqueMetierInterface {
 
 	@Override
 	public List<Statistique> list_vente_par_hdd() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		List<Statistique> cs5 = new ArrayList<Statistique>();
 		try {
 			// préparer la requête SQL
@@ -176,6 +194,9 @@ public class StatistiqueMetierImpl implements StatistiqueMetierInterface {
 
 	@Override
 	public List<Statistique> list_vente_par_gpu() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		List<Statistique> cs6 = new ArrayList<Statistique>();
 		try {
 			// préparer la requête SQL
@@ -191,7 +212,7 @@ public class StatistiqueMetierImpl implements StatistiqueMetierInterface {
 					Statistique c = new Statistique();
 					c.setQt_vend(rs.getInt("qte_vend_par_gpu"));
 					c.setMarque_gpu(rs.getString("marqueGpu"));
-					c.setCapacitegpu(rs.getInt("capacitegpu"));
+					c.setCapacitegpu(rs.getString("capacitegpu"));
 					// ajouter l'objet "Cpu" dans la liste
 					cs6.add(c);
 				}
@@ -206,6 +227,9 @@ public class StatistiqueMetierImpl implements StatistiqueMetierInterface {
 
 	@Override
 	public List<Statistique> list_vente_par_fornissuer() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+	
 		List<Statistique> cs7 = new ArrayList<Statistique>();
 		try {
 			// préparer la requête SQL
@@ -239,6 +263,9 @@ public class StatistiqueMetierImpl implements StatistiqueMetierInterface {
 
 	@Override
 	public List<Statistique> list_qteStock_par_marque_cpu() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		List<Statistique> cs8 = new ArrayList<Statistique>();
 		try {
 			// préparer la requête SQL
@@ -269,6 +296,9 @@ public class StatistiqueMetierImpl implements StatistiqueMetierInterface {
 
 	@Override
 	public List<Statistique> list_vente_par_gamme() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		List<Statistique> cs9 = new ArrayList<Statistique>();
 		try {
 			// préparer la requête SQL

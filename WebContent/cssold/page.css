@@ -1,13 +1,4 @@
-body{
-	  background:#1b1b2b;
-	  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-	  padding:75px;
-	  text-align:center;
-	  font-family: 'Oswald', sans-serif;
-	  font-size: 18px;
-	  height: 100vh;
-	}
-	h1{
-	  color:#212121;
-	  font-weight:100;
-	}
+.erreur {
+    color: red;
+    font-weight: bold;
+}

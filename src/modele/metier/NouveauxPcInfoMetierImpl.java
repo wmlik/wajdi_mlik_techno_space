@@ -17,16 +17,22 @@ public class NouveauxPcInfoMetierImpl implements NouveauxPcInfoMetierInterface {
 	
 	public NouveauxPcInfoMetierImpl() {
 		 dao = new DaoImpl();
+		 TestConnectMetierInterface test = new TestConnectMetierImpl();
+			test.test();
+			
 	}
 	
 	@Override
 	public List<NouveauxPcInfo> listeNouveauxPcInfo() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		// TODO Auto-generated method stub
 		List<NouveauxPcInfo> cs= new ArrayList<NouveauxPcInfo>();
 		
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from NouveauxPcInfo ");
+			PreparedStatement ps = dao.connection.prepareStatement(" select * from nouveauxpcinfo ");
 			
 			// Récupérer le résultat de la requête
 			ResultSet rs= dao.lire(ps);
@@ -68,10 +74,13 @@ public class NouveauxPcInfoMetierImpl implements NouveauxPcInfoMetierInterface {
 	
 	@Override
 	public NouveauxPcInfo getNouveauxPcInfoById(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		NouveauxPcInfo c = new NouveauxPcInfo();
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from NouveauxPcInfo where id_pc = ?");
+			PreparedStatement ps = dao.connection.prepareStatement(" select * from nouveauxpcinfo where id_pc = ?");
 			ps.setInt(1,id);
 			
 			ResultSet rs= dao.lire(ps);
@@ -106,13 +115,15 @@ public class NouveauxPcInfoMetierImpl implements NouveauxPcInfoMetierInterface {
 
 	@Override
 	public List<NouveauxPcInfo> listNouveauxPcInfoByinfo(String motDeRecherche) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		List<NouveauxPcInfo> users= new ArrayList<NouveauxPcInfo>();
 
 		try {
 			// préparer la requête SQL
-			String sql= "select * from NouveauxPcInfo where marquePc like ? or gamme like ?";
-			System.out.println(sql);
-			System.out.println("mr:"+motDeRecherche);
+			String sql= "select * from nouveauxpcinfo where marquePc like ? or gamme like ?";
+			
 			PreparedStatement ps = dao.connection.prepareStatement(sql);
 			//Affecter la valeur du paramètre
 			ps.setString(1,"%"+motDeRecherche+"%");
@@ -159,6 +170,9 @@ public class NouveauxPcInfoMetierImpl implements NouveauxPcInfoMetierInterface {
 
 	@Override
 	public void addNouveauxPcInfo(NouveauxPcInfo p) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" insert into nouveauxpcinfo values (0,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
@@ -191,11 +205,14 @@ public class NouveauxPcInfoMetierImpl implements NouveauxPcInfoMetierInterface {
 
 	@Override
 	public void updateNouveauxPcInfo(NouveauxPcInfo p) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
-			String sql = " update nouveauxpcinfo set Id_pc = ?, MarquePc=?, Gamme=?, Couleur =?, "
-					+ "Date_entree =?, Date_sortie =?, Prix_achat =?, Prix_vente =?, Qte_stock =?, Qte_vendu =?, "
-					+ "Id_fournisseur =?, Id_cpu =?, Id_gpu =?, Id_ram =? where Id_pc=? ";
+			String sql = " update nouveauxpcinfo set id_pc = ?, marquePc=?, gamme=?, couleur =?, "
+					+ "date_entree =?, date_sortie =?, prix_achat =?, prix_vente =?, qte_stock =?, qte_vendu =?, "
+					+ "id_fournisseur =?, id_cpu =?, id_gpu =?, id_ram =? where id_pc=? ";
 			PreparedStatement ps = dao.connection.prepareStatement(sql);
 			ps.setInt(1, p.getId_pc());
 			ps.setString(2, p.getMarquePc());
@@ -222,6 +239,9 @@ public class NouveauxPcInfoMetierImpl implements NouveauxPcInfoMetierInterface {
 
 	@Override
 	public void deleteNouveauxPcInfo(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" delete from nouveauxpcinfo  where id_pc=? ");

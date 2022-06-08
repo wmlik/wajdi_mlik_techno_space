@@ -1,3 +1,7 @@
+.user {
+    color: #a74efa;
+    
+}
 .menu-4 {
   text-align: center;
   text-transform: uppercase;
@@ -43,7 +47,7 @@
   bottom: 100%;
   left: 0;
   content: attr(data-hover);
-  color: #212121;
+  color: #0080ff;
   white-space: nowrap;
 }
 .menu-4 li:hover a,

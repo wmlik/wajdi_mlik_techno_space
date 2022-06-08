@@ -40,7 +40,12 @@ public class UserEditionController extends HttpServlet {
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
 		String id = request.getParameter("id");
-
+		List<User> usersStore = metier.listUsers();
+		
+		for (User u : usersStore) {
+			if (u.getLogin().equals(login))
+				erreurs.add("choisissez une autre login, login existe déjà");
+		}
 		// Contrôler les valeurs saisies
 		if (login == null || login.equals(""))
 			erreurs.add("Veuillez remplir le champ login");
@@ -70,7 +75,8 @@ public class UserEditionController extends HttpServlet {
 			// lire à partir de la session ( portée session)
 			HttpSession session = request.getSession(true);
 			// Récupérer le tableau des users de la session
-			List<User> usersStore = (ArrayList<User>) session.getAttribute("listOfUsers");
+			
+			 usersStore = (ArrayList<User>) session.getAttribute("listOfUsers");
 
 			// Mode Ajout
 			if (id != null && id.equals("0")) {

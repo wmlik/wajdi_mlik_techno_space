@@ -17,12 +17,17 @@ public class UserMetierImpl implements UserMetierInterface{
 	
 	public UserMetierImpl() {
 		 dao = new DaoImpl();
+		 
+			TestConnectMetierInterface test = new TestConnectMetierImpl();
+			test.test();
 	}
 	@Override
 	public void addUser(User u) {
 		
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
 		
-		
+	
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" insert into user values (0,?,?,?,?)");
@@ -41,12 +46,15 @@ public class UserMetierImpl implements UserMetierInterface{
 	}
 	@Override
 	public List<User> listUsers() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		//Définir une liste vide pour stocker les objets "User"
 		List<User> users= new ArrayList<User>();
 	
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from User");
+			PreparedStatement ps = dao.connection.prepareStatement(" select * from user");
 			// Récupérer le résultat de la requête
 			ResultSet rs= dao.lire(ps);
 			if (rs!=null)
@@ -75,11 +83,14 @@ public class UserMetierImpl implements UserMetierInterface{
 	}
 	@Override
 	public User getUserByLoginAndPassword(String l, String p) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 
 		User u= null;
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from User where login =? and password = ?");
+			PreparedStatement ps = dao.connection.prepareStatement(" select * from user where login =? and password = ?");
 			ps.setString(1, l);
 			ps.setString(2, p);
 			ResultSet rs= dao.lire(ps);
@@ -104,7 +115,9 @@ public class UserMetierImpl implements UserMetierInterface{
 	}
 	@Override
 	public void updateUser(User u) {
-
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" update user set nom= ?, prenom=?, login=?, password =? where id=? ");
@@ -123,7 +136,9 @@ public class UserMetierImpl implements UserMetierInterface{
 	}
 	@Override
 	public void deleteUser(int id) {
-
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" delete from user  where id=? ");
@@ -136,11 +151,13 @@ public class UserMetierImpl implements UserMetierInterface{
 	}
 	@Override
 	public User getUserById(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
 		
 				User u= null;
 				try {
 					// préparer la requête SQL
-					PreparedStatement ps = dao.connection.prepareStatement(" select * from User where id = ?");
+					PreparedStatement ps = dao.connection.prepareStatement(" select * from user where id = ?");
 					ps.setInt(1,id);
 					
 					ResultSet rs= dao.lire(ps);
@@ -165,14 +182,16 @@ public class UserMetierImpl implements UserMetierInterface{
 	}
 	@Override
 	public List<User> listUsersByNomOrPrenom(String motDeRecherche) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		//Définir une liste vide pour stocker les objets "User"
 				List<User> users= new ArrayList<User>();
 
 				try {
 					// préparer la requête SQL
-					String sql= "select * from User where nom like ? or prenom like ?";
-					System.out.println(sql);
-					System.out.println("mr:"+motDeRecherche);
+					String sql= "select * from user where nom like ? or prenom like ?";
+					
 					PreparedStatement ps = dao.connection.prepareStatement(sql);
 					//Affecter la valeur du paramètre
 					ps.setString(1,"%"+motDeRecherche+"%");

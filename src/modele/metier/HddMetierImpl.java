@@ -17,16 +17,22 @@ public class HddMetierImpl implements HddMetierInterface {
 	
 	public HddMetierImpl() {
 		 dao = new DaoImpl();
+		 TestConnectMetierInterface test = new TestConnectMetierImpl();
+			test.test();
+			
 	}
 	
 	@Override
 	public List<Hdd> listeHdd() {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		// TODO Auto-generated method stub
 		List<Hdd> cs= new ArrayList<Hdd>();
 		
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from Hdd ");
+			PreparedStatement ps = dao.connection.prepareStatement(" select * from hdd ");
 			
 			// Récupérer le résultat de la requête
 			ResultSet rs= dao.lire(ps);
@@ -57,10 +63,13 @@ public class HddMetierImpl implements HddMetierInterface {
 	
 	@Override
 	public Hdd getHddById(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		Hdd c = new Hdd();
 		try {
 			// préparer la requête SQL
-			PreparedStatement ps = dao.connection.prepareStatement(" select * from Hdd where id_hdd = ?");
+			PreparedStatement ps = dao.connection.prepareStatement(" select * from hdd where id_hdd = ?");
 			ps.setInt(1,id);
 			
 			ResultSet rs= dao.lire(ps);
@@ -85,13 +94,15 @@ public class HddMetierImpl implements HddMetierInterface {
 
 	@Override
 	public List<Hdd> listHddByinfo(String motDeRecherche) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		List<Hdd> users= new ArrayList<Hdd>();
 
 		try {
 			// préparer la requête SQL
-			String sql= "select * from Hdd where marqueHdd like ? or capaciteHdd like ? or bande_passante like ? or type like ?  ";
-			System.out.println(sql);
-			System.out.println("mr:"+motDeRecherche);
+			String sql= "select * from hdd where marqueHdd like ? or capaciteHdd like ? or bande_passante like ? or type like ?  ";
+			
 			PreparedStatement ps = dao.connection.prepareStatement(sql);
 			//Affecter la valeur du paramètre
 			ps.setString(1,"%"+motDeRecherche+"%");
@@ -131,6 +142,9 @@ public class HddMetierImpl implements HddMetierInterface {
 
 	@Override
 	public void addHdd(Hdd p) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" insert into hdd values (0,?,?,?,?)");
@@ -151,6 +165,9 @@ public class HddMetierImpl implements HddMetierInterface {
 
 	@Override
 	public void updateHdd(Hdd u) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			String sql = " update hdd set id_hdd = ?, marqueHdd=?, capaciteHdd=?, Bande_passante =?, Type =? where id_hdd=? ";
@@ -171,6 +188,9 @@ public class HddMetierImpl implements HddMetierInterface {
 
 	@Override
 	public void deleteHdd(int id) {
+		TestConnectMetierInterface test = new TestConnectMetierImpl();
+		test.test();
+		
 		try {
 			// préparer la requête SQL
 			PreparedStatement ps = dao.connection.prepareStatement(" delete from hdd  where id_hdd=? ");

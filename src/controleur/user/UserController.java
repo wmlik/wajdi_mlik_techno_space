@@ -47,6 +47,7 @@ public class UserController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		List<User> users = metier.listUsers();
 		//Récupérer une session			
 		HttpSession session =request.getSession(true);

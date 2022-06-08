@@ -15,7 +15,8 @@ if (motDeRecherche==null || motDeRecherche.equals(""))
 	content="text/html; charset=windows-1256">
 <title>List Pc</title>
 </head>
-<body>
+<body id="page-top">
+<div id="content-wrapper" class="d-flex flex-column">
 Sélectionner un critère de recherche (par Marque ou Gamme) :
 	<div>
 		<form action=PcCompletListController method="GET">
@@ -30,13 +31,13 @@ Sélectionner un critère de recherche (par Marque ou Gamme) :
 			</table>
 		</form>
 	</div>
-
-<a href ="FormNouveauxPcInfoAction">Ajouter</a>
-
-	<p>	Liste des Pc </p>
+<p>
+<a class="btn btn-lg btn-primary" href ="FormNouveauxPcInfoAction">Ajouter</a>
+</p>
+	
 		<hr>
-			<table border ="1">
-			<tr>
+			<table border ="1" class="table table-hover">
+			<tr class="table-secondary">
 				<th>N°</th>
 				<th>Gamme</th>
 				<th>Marque</th>
@@ -105,8 +106,8 @@ Sélectionner un critère de recherche (par Marque ou Gamme) :
 					out.println("<td> " + ((PcComplet) lp.get(i)).getPrix_vente() + " DT</td>");
 					out.println("<td> " + ((PcComplet) lp.get(i)).getNom_fournisseur() + "</td>");
 					
-					out.print("<td>  <a href ='FormNouveauxPcInfoAction?id="+((PcComplet) lp.get(i)).getId_pc()+"&mode=Edition"+"'>Modifier</a> </td>");
-					out.println("<td>  <a href ='FormNouveauxPcInfoAction?id="+((PcComplet) lp.get(i)).getId_pc()+"&mode=Suppression"+"'  onclick='return confirm(\"Voulez vous vraiment supprimer cet utilisateur ?\")'      >Supprimer</a> </td>");
+					out.print("<td>  <a class='btn btn-info' href ='FormNouveauxPcInfoAction?id="+((PcComplet) lp.get(i)).getId_pc()+"&mode=Edition"+"'>Modifier</a> </td>");
+					out.println("<td>  <a class='btn btn-danger' href ='FormNouveauxPcInfoAction?id="+((PcComplet) lp.get(i)).getId_pc()+"&mode=Suppression"+"'  onclick='return confirm(\"Voulez vous vraiment supprimer cet utilisateur ?\")'      >Supprimer</a> </td>");
 					out.println("</tr>");
 				}
 				
@@ -119,6 +120,7 @@ Sélectionner un critère de recherche (par Marque ou Gamme) :
 
 <hr>
 
-</div>
+	</div>
+
 </body>
 </html>
