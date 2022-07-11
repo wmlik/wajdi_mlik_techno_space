@@ -40,12 +40,23 @@ public class UserEditionController extends HttpServlet {
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
 		String id = request.getParameter("id");
+		String mode = request.getParameter("mode");
+		System.out.println("hethi mode mta3 servlette " + mode);
 		List<User> usersStore = metier.listUsers();
-		
-		for (User u : usersStore) {
-			if (u.getLogin().equals(login))
-				erreurs.add("choisissez une autre login, login existe déjà");
+
+		if (mode == null || mode.equals("")) {
+			for (User u : usersStore) {
+				if (u.getLogin().equals(login))
+					erreurs.add("choisissez une autre login, login existe déjà");
+			}
+		} else {
+			for (User u : usersStore) {
+				if (u.getLogin().equals(login)&& u.getId()!=Integer.parseInt(id))
+					erreurs.add("choisissez une autre login, login existe déjà");
+				System.out.println("D5al lel else mta3 controlor");
+			}
 		}
+
 		// Contrôler les valeurs saisies
 		if (login == null || login.equals(""))
 			erreurs.add("Veuillez remplir le champ login");
@@ -75,8 +86,8 @@ public class UserEditionController extends HttpServlet {
 			// lire à partir de la session ( portée session)
 			HttpSession session = request.getSession(true);
 			// Récupérer le tableau des users de la session
-			
-			 usersStore = (ArrayList<User>) session.getAttribute("listOfUsers");
+
+			usersStore = (ArrayList<User>) session.getAttribute("listOfUsers");
 
 			// Mode Ajout
 			if (id != null && id.equals("0")) {
@@ -123,10 +134,11 @@ public class UserEditionController extends HttpServlet {
 
 		// gérer le mode "Edition"
 		if (mode != null && mode.equals("Edition")) {
-			
+
 			User u = metier.getUserById(Integer.parseInt(id));
 			// passer l'objet trouvé comme attribut dans la requête
 			request.setAttribute("user", u);
+			request.setAttribute("mode", "Edition");
 			// passer au formulaire
 			request.getRequestDispatcher("UserForm.jsp").forward(request, response);
 		}
@@ -134,7 +146,7 @@ public class UserEditionController extends HttpServlet {
 		if (mode != null && mode.equals("Suppression")) {
 
 			int index = Integer.parseInt(id);
-			
+
 			// Supprimer dans la base de données
 			metier.deleteUser(index);
 
@@ -148,7 +160,6 @@ public class UserEditionController extends HttpServlet {
 
 	}
 
-	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -156,8 +167,7 @@ public class UserEditionController extends HttpServlet {
 		User u = (User) session.getAttribute("user");
 		if (u == null) {
 			request.getRequestDispatcher("UserConnexion.jsp").forward(request, response);
-		} 
-		else {
+		} else {
 			super.service(request, response);
 		}
 	}

@@ -564,7 +564,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `nom`, `prenom`, `login`, `password`) VALUES
-(1, 'Mlik', 'wajdi', 'aa', 'aa'),
+(1, 'Mlik', 'wajdi', 'aa', 'bb'),
 (2, 'mlik', 'wajdi', 'ww', 'zz');
 
 --

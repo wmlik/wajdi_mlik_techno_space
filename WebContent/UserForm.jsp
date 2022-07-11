@@ -45,6 +45,7 @@
 			nom = u.getNom();
 			prenom = u.getPrenom();
 		}
+		
 
 		// Correction des  valleurs nulles
 		if (login == null)
@@ -59,6 +60,19 @@
 	<div>
 		<form action="UserEditionController" method="POST">
 			<table>
+			<%
+					String mode = (String) request.getAttribute("mode");
+			if (mode == "Edition") {
+				System.out.println("mode edition ousel lel formulaire");		
+				System.out.println(mode);		
+			
+			%>
+				<tr>
+					<td><input type="hidden" name="mode" value="<%=mode%>" /></td>
+				</tr>
+				<%
+					}
+				%>
 				<tr>
 					<td><input type="hidden" name="id" value="<%=id%>" /></td>
 				</tr>
